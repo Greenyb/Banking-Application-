@@ -16,7 +16,8 @@ public class Main {
         System.out.println("R: read bank info\nC:create account\nU: update account\nD: delete account");
         Scanner option = new Scanner(System.in);
         String chosen = option.nextLine();
-        int arr[][] = ;
+        String arr[][] = new String[][];
+        int p = 0;
         if(chosen == "R"){
 
         }else if(chosen == "C"){
@@ -24,6 +25,7 @@ public class Main {
             System.out.println("Enter your name: ");
             Scanner name = new Scanner(System.in);
             String userName = name.nextLine();
+            arr[p][] = new String[userName];
             System.out.println("What type of account?");
             String accType = name.nextLine();
             int accNum = rand.nextInt(10000000);
