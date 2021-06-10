@@ -18,34 +18,58 @@ public class Main {
         String chosen = option.nextLine();
         String arr[][] = new String[10][10];
         int p = 0;
-        if(chosen == "R"){
+        if(chosen.equals("R")){
 
-        //Account Creation
-        }else if(chosen == "C"){
+            //Account Creation
+            //Prompt user to show all or a specific account
+            System.out.println("Show all bank info or a specific account? (A/S)");
+            Scanner account = new Scanner(System.in);
+            String acc = account.nextLine();
+            if(acc.equals("A")){
+                for (int i = 0; i <= arr.length; i++) {
+                    System.out.print(arr[i][0] + " |" + arr[i][1] + " |" + arr[i][2] + " |" + arr[i][3]);
+                }
+            }else if(acc.equals("S")){
+                System.out.println("Enter the account number: ");
+                String accountNum = account.nextLine();
+                for(int j = 0; j <= arr.length; j++){
+                    if(arr[j][2].equals(accountNum)) {
+                        System.out.print(arr[j][0] + " |" + arr[j][1] + " |" + arr[j][2] + " |" + arr[j][3]);
+                        break;
+                    }else if(!arr[arr.length - 1][2].equals(accountNum)){
+                        System.out.println("Invalid Number");
+                    }
+                }
+            }
+
+        }else if(chosen.equals("C")){
             //Prompts Username
             Random rand = new Random();
             System.out.println("Enter your name: ");
             Scanner name = new Scanner(System.in);
             String userName = name.nextLine();
-            arr[p][1] = userName;
+            arr[p][0] = userName;
 
             //Declared Account Type
             System.out.println("What type of account?");
             String accType = name.nextLine();
-            arr[p][2] = accType;
+            arr[p][1] = accType;
 
             //Random Account Number
             System.out.println("New Account Number: ");
             int accNum = rand.nextInt(10000000);
-            //arr[p][3] = accNum;
+            String accNumB = String.valueOf(accNum);
+            arr[p][2] = accNumB;
 
             //Account Balance
             System.out.println("Make a deposit: ");
             Scanner scan = new Scanner(System.in);
             String accBalance = scan.nextLine();
-            arr[p][4] = accBalance;
+            arr[p][3] = accBalance;
 
-        }else if(chosen == "U"){
+            p = p + 1;
+
+        }else if(chosen.equals("U")){
             //Write a method that ask for account number
 
             //Write another method that prints out all the options that are available to change for the user and ask for
@@ -60,12 +84,30 @@ public class Main {
 
             //if incorrect repeat steps 3-6
 
-        }else if(chosen == "D"){
-            System.out.println("Are you sure that you would like to delete this account?");
+        }else if(chosen.equals("D")){
+            System.out.println("Are you sure that you would like to delete this account? (Y/N)");
             Scanner scan = new Scanner(System.in);
             String userAnswer = scan.nextLine();
             //if yes delete account
-            //if no go back to main menu
+            if(userAnswer.equals("Y")){
+                System.out.println("Please enter the account number: ");
+                String accountNum = scan.nextLine();
+                String[][] tempArr = new String[arr.length -1][3];
+                for(int i = 0; i <= arr.length; i++){
+                    //if rows account number does not equal accountNum
+                    if(!arr[i][2].equals(accountNum)){
+                        //Add every column of tempArr[i][]
+                        for(int x = 0; x <= 3; x++){
+                            tempArr[i][x] = arr[i][x];
+                        }
+                    }
+                }
+                arr = tempArr;
+                //if no go back to main menu
+            }
+//            else if(userAnswer == "N"){
+//                break;
+//            }
 
         }else{
             System.out.println("Invalid option");
