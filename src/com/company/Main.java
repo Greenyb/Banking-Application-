@@ -56,8 +56,9 @@ public class Main {
             arr[p][1] = accType;
 
             //Random Account Number
-            System.out.println("New Account Number: ");
+
             int accNum = rand.nextInt(10000000);
+            System.out.println("New Account Number: \n" + accNum);
             String accNumB = String.valueOf(accNum);
             arr[p][2] = accNumB;
 
